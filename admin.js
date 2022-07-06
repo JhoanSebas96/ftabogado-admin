@@ -67,23 +67,6 @@ window.addEventListener("DOMContentLoaded", async (e) =>{
 
 });
 
-btnSearch.addEventListener("click", async (e) => {
-  const q = query(
-    collection(db, "casos"),
-    where("cedula", "==", inputSearch.value)
-  );
-  const querySnapshot = await getDocs(q);
-  tabla2.innerHTML = "";
-  querySnapshot.forEach((doc) => {
-    tabla2.innerHTML += `
-            <tr>
-                <td>${doc.data().cedula}</td>
-                <td><a href="${doc.data().url}" target="_blank">${doc.data().namePdf}</a></td>
-            </tr>
-            
-        `;
-  });
-});
 
 inputFile.addEventListener("change", async (e) => {
   await uploadFile(inputFile.files[0]);

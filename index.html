@@ -13,55 +13,44 @@
   </head>
   <body>
     <div class="container p-4">
-      <div class="col-md-5 mb-5 m-1">
+      <div class="col-md-5 mb-5 mx-1">
         <div class="card">
           <div class="card-body">
             <h1 class="h4">Añadir Proceso</h1>
 
             <form id="task-form">
-              <label for="cedula">Cédula:</label>
-              <input
-                type="text"
-                id="cedula"
-                class="form-control mb-3"
-                class="My First Title"
-                placeholder="Cédula"
-                autofocus
-              />
+              <input type="text" class="idDoc" hidden></input>
+              <label >Código:</label>
+              <input type="text" id="codigo" class="form-control mb-3" placeholder="Ingrese el código" autofocus required/>
 
-              <label for="description">Description:</label>
-              <input type="file" id="input-file" class="form-control mb-3" />
+              <label >Archivo:</label>
+              <input type="file" id="input-file" class="form-control mb-3" required/>
 
-              <label for="url">Url:</label>
-              <input
-                type="text"
-                id="url-file"
-                class="form-control mb-3"
-                class="My First Title"
-                placeholder="Url"
-                autofocus
-                disabled
-              />
+              <label >Url:</label>
+              <input type="text" id="url-file" class="form-control mb-3" placeholder="Url" autofocus disabled required/>
 
-              <button
-                class="btn btn-primary"
-                multiple
-                name="files[]"
-                id="btn-task-form"
-              >Save</button>
+              <label >Descripción:</label>
+              <input type="text" id="description" class="form-control mb-3" placeholder="Ingrese la description" autofocus required />
+
+              <button class="btn btn-primary"  id="btn-add">Guardar</button>
+              <button class="btn btn-primary" type="button" id="btn-update" hidden>Actualizar</button>
+              <button class="btn btn-primary" type="button" id="btn-cancel" hidden>Cancelar</button>
             </form>
           </div>
         </div>
       </div>  
-      <div class="col-md-6">
+      <div>
         <table id="id-tabla" class="table  table-striped">
           <thead class="table-dark">
             <tr>
-              <th scope="col" style="width: 100px">Cédula</th>
+              <th scope="col" style="width: 100px">Código</th>
               <th scope="col">Url</th>
+              <th scope="col">Descripción</th>
+              <th style="width: 100px"></th>
+              <th></th>
             </tr>
           </thead>
-          <tbody></tbody>
+          <tbody id="table-body"></tbody>
         </table>
       </div> 
     </div>

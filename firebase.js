@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-app.js";
 import { getStorage, ref, uploadBytesResumable, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-storage.js";
-import { getFirestore, orderBy, query, collection, doc, addDoc, getDoc, onSnapshot,limit} from "https://www.gstatic.com/firebasejs/9.8.2/firebase-firestore.js";
+import { getFirestore, orderBy, query, collection, doc, addDoc, getDoc, onSnapshot, updateDoc, limit} from "https://www.gstatic.com/firebasejs/9.8.2/firebase-firestore.js";
 
 
 const firebaseConfig = {
@@ -33,18 +33,25 @@ export const uploadFile = async (file) => {
 
 /**
  * Save a Document in Firestore
- * @param {string} cedula the cedula of the user
+ * @param {string} codigo the cedula of the user
  * @param {string} namePdf the name of the pdf
  * @param {string} url the url of the pdf
  * @param {numeric} numero the numero of the pdf
+ * @param {string} description the description of the pdf
  */
-export const saveDocument = (cedula, namePdf, url, numero) => {
-    addDoc(collection(db,"casos"),{cedula, namePdf, url, numero});
+export const saveDocument = (codigo, namePdf, url, description, numero) => {
+    addDoc(collection(db,"casos"),{codigo, namePdf, url, description, numero});
 }
 
 export const onGetDocuments = (callback) =>{
     const q = query(collection(db,"casos"), orderBy("numero"))
     onSnapshot(q, callback);
 }
+
+export const getDocument = (id) => getDoc(doc(db, "casos", id));
+
+export const updateDocument = (id, description) => updateDoc(doc(db, 'casos', id), {
+    "description": description
+});
 
 
